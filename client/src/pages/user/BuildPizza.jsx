@@ -17,15 +17,20 @@ const PizzaPreview = ({ selection }) => {
   
   const format = (name) => {
     if (!name) return '';
-    return name.toLowerCase().replace(/\s+/g, '-');
+    const lowercase = name.toLowerCase().trim();
+    if (lowercase === 'bbq') return 'bbq-sauce';
+    if (lowercase === 'hot sauce') return 'buffalo';
+    if (lowercase === 'gouda') return 'cheddar';
+    if (lowercase === 'vegan cheese') return 'mozzarella';
+    return lowercase.replace(/\s+/g, '-');
   };
 
   const base = selection.base ? [selection.base.name] : [];
   const sauce = selection.sauce ? [selection.sauce.name] : [];
   const cheese = selection.cheese ? [selection.cheese.name] : [];
   
-  // Separate veggies and meats from selection.veggies
-  const veggies = selection.veggies.filter(v => v.category === 'veggie');
+  // Separate veggies and meats safely
+  const veggies = selection.veggies.filter(v => v.category !== 'meat');
   const meats = selection.veggies.filter(v => v.category === 'meat');
 
   return (
@@ -62,14 +67,17 @@ const PizzaPreview = ({ selection }) => {
         )}
 
         {/* Veggies */}
-        {veggies.map((veg) => (
-          <img
-            key={veg._id}
-            src={`${CLOUDINARY_BASE}/veggies/${format(veg.name)}.png`}
-            alt={veg.name}
-            className="pizza-layer-img pizza-layer-topping"
-          />
-        ))}
+        {veggies.map((veg) => {
+          if (veg.name.toLowerCase().trim() === 'corn') return null;
+          return (
+            <img
+              key={veg._id}
+              src={`${CLOUDINARY_BASE}/veggies/${format(veg.name)}.png`}
+              alt={veg.name}
+              className="pizza-layer-img pizza-layer-topping"
+            />
+          );
+        })}
 
         {/* Meats */}
         {meats.map((m) => (
