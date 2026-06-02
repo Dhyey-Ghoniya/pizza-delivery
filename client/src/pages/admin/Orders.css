@@ -1,0 +1,39 @@
+.admin-orders { padding: 40px 0; }
+.admin-orders h1 { font-size: 28px; margin-bottom: 24px; }
+.orders-filter { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.order-filter-btn {
+  padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 500;
+  background: var(--bg-secondary); color: var(--text-muted); border: 1px solid var(--border-glass);
+  cursor: pointer; transition: var(--transition);
+}
+.order-filter-btn.active { background: rgba(255,107,53,0.15); color: var(--accent-orange); border-color: var(--accent-orange); }
+.admin-order-card {
+  background: var(--gradient-card); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg); padding: 24px; margin-bottom: 16px;
+  backdrop-filter: blur(12px); animation: fadeIn 0.4s ease-out;
+}
+.admin-order-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px; flex-wrap: wrap; gap: 8px;
+}
+.admin-order-customer {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.admin-order-customer strong { font-size: 16px; }
+.admin-order-customer small { color: var(--text-muted); font-size: 13px; }
+.admin-order-pizza { 
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px; margin-bottom: 16px; padding: 12px; background: var(--bg-primary);
+  border-radius: var(--radius-md);
+}
+.admin-order-pizza div { font-size: 13px; }
+.admin-order-pizza span { color: var(--text-muted); font-size: 11px; display: block; }
+.admin-order-footer {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.status-select {
+  padding: 8px 12px; background: var(--bg-primary); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); color: var(--text-primary); font-size: 13px;
+  cursor: pointer; outline: none; transition: var(--transition);
+}
+.status-select:focus { border-color: var(--accent-orange); }
